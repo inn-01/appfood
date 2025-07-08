@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOOD FORM JINSHI</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; background: #ff5757; }
+    .container { padding: 1rem; max-width: 480px; margin: auto; }
+    .card { background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1); overflow: hidden; margin-bottom: 1rem; cursor: pointer; }
+    .card img { width: 100%; height: 200px; object-fit: cover; }
+    .card-content { padding: 0.5rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    button { padding: 0.5rem 1rem; border: none; background: #1e88e5; color: rgb(255, 255, 255); border-radius: 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="root" class="container"></div>
+
+
+  <!-- React + ReactDOM CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+  <!-- Main App -->
+  <script type="text/babel">
+    const menuData = [
+      {
+        id: 1,
+        name: "ไก่กอด",
+        price: 55,
+        image: "ka.jpg",
+        description: "ไก่ทอด เสิร์ฟร้อน รสจัดจ้าน"    
+      },
+      {
+        id: 2,
+        name: "ก๋วยเตี๋ยวเรือ",
+        price: 50,
+        image: "de.jpg",
+        description: "ก๋วยเตี๋ยวเรือหมูน้ำตก เส้นเหนียวนุ่ม น้ำซุปเข้มข้น หอมเครื่องเทศ"
+      },
+      {
+        
+        id: 3,
+        name: "บะหมี่หมูแดงฮ่อง",
+        price: 50,
+        image: "บะหมี่หมูแดงฮ่อง.jpg",
+        description: "บะหมี่หมูแดงฮ่อง เส้นเหนียวนุ่ม น้ำซุปเข้มข้น หอมเครื่องเทศ"
+      },
+      {
+        id: 4,
+        name: "ผัดไทยกุ้งสด",
+        price: 50,
+        image: "ผัดไทยกุ้งสด.jpg",
+        description: "ผัดไทยกุ้งสด เส้นเหนียวนุ่ม น้ำซุปเข้มข้น หอมเครื่องเทศ"
+      },
+      {
+         id: 5,
+        name: "ผัดซีอิ้ว",
+        price: 50,
+        image: "ผัดซีอิ้ว.jpg",
+        description: "ผัดซีอิ้ว เส้นเหนียวนุ่ม น้ำซุปเข้มข้น หอมเครื่องเทศ"
+      },
+      {
+        id: 6,
+        name: "ชาไทย",
+        price: 30,
+        image: "ar.jpeg",
+        description: "ชาไทยเย็นหวานมัน หอมชาไทยแท้ สดชื่นคลายร้อน"
+      },
+      {
+        id: 7,
+        name: "กาแฟ",
+        price: 30,
+        image: "cf.jpg",
+        description: "กาแฟเย็น หอมกาแฟ สดชื่นคลายร้อน"
+      },
+      {
+        id: 8,
+        name: "เก๊กฮวย",
+        price: 30,
+        image: "เก๊กฮวย.jpg",
+        description: "เก๊กฮวย หอมเก๊กฮวยแท้ สดชื่นคลายร้อน"
+      },
+       {
+        id: 9,
+        name: "ชามะนาว",
+        price: 30,
+        image: "ชามะนาว.jpg",
+        description: "ชามะนาว หอมชามะนาวแท้ สดชื่นคลายร้อน"
+      },
+      {
+        id: 9,
+        name: "น้ำใบเตย",
+        price: 30,
+        image: "น้ำใบเตย.png",
+        description: "น้ำใบเตย หอมน้ำใบเตยแท้ สดชื่นคลายร้อน" 
+          },
+    ];
+
+
+    function App() {
+      const [selectedFood, setSelectedFood] = React.useState(null);
+
+
+      if (selectedFood) {
+        return (
+          <div>
+            <img src={selectedFood.image} style={{width:'100%', borderRadius:'12px'}}/>
+            <h2>{selectedFood.name}</h2>
+            <p>{selectedFood.description}</p>
+            <p><strong>ราคา {selectedFood.price} บาท</strong></p>
+            <button onClick={() => setSelectedFood(null)}>ย้อนกลับ</button>
+          </div>
+        );
+      }
+
+
+      return (
+        <div>
+          {menuData.map(item => (
+            <div className="card" key={item.id} onClick={() => setSelectedFood(item)}>
+              <img src={item.image} />
+              <div className="card-content">
+                <span>{item.name}</span>
+                <span>{item.price} บาท</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
+
+
+
+
+
